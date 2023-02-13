@@ -1,0 +1,161 @@
+<!-- Default from react -->
+<!-- <!DOCTYPE html> -->
+<!-- <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html> -->
+
+
+
+<!-- The following examples work if you do not use index.js -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>  
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <title>React App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+      <script type="text/javascript">
+        let heading =
+          React.createElement(
+            "h1",
+            null,
+            "Getting started"
+          );
+          ReactDOM.render(
+            heading,
+            document.getElementById("root")
+          );
+      </script>
+  </body>
+</html> -->
+
+
+<!-- Using Babel -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>  
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>React App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+      <script type="text/babel">
+        let one='1';
+        let two='2';
+        let three='3';
+        ReactDOM.render(
+        <ul>
+          <li>{one}</li>
+          <li>{two}</li>
+          <li>{three}</li>
+        </ul>
+        )
+        
+      </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>  
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>React App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+      <script type="text/babel">
+        
+
+        function Header(props){
+          console.log(props);
+          return(<header>
+            <h1>
+              {props.word} World
+            </h1>
+          </header>
+          );
+        }
+
+        function Main(props){
+          return(
+            <section>
+              <p>
+                Hello World. The year is {props.year}
+              </p>
+              <ul>
+                {props.dishes.map((dish)=>(
+                  <li key={dish.id}>{dish.title}</li>
+                ))}
+              </ul>
+              <img src="data:image/jpeg;base64,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"
+              alt="a bunny"/>
+          </section>
+          );
+        }
+
+        function Footer(){
+          return(
+            <section>
+              <p>
+                Goodbye!
+              </p>
+            </section>
+          )
+        }
+
+        const dishes = [
+          "salad",
+          "sandwich",
+          "soup"
+        ];
+
+        const dishObjects=dishes.map((dish, i)=>({
+          id:i,
+          title:dish
+        }));
+
+        function App() {
+          return (
+            <div className="App">
+              <Header word="Hello"/> 
+              <Main year={new Date().getFullYear()} dishes={dishObjects}/>
+              <Footer />
+            </div>
+          );
+        }
+
+        ReactDOM.render(<App />,document.getElementById("root"));
+        
+      </script>
+  </body>
+</html>
