@@ -2,7 +2,7 @@ import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // react component
-// import App from "./App";
+import App from "./App";
 
 // Creating elements...
 // ReactDOM.render(
@@ -21,5 +21,5 @@ import './index.css';
 //     document.getElementById("root")
 // );
 
-// Creating recat component
-// ReactDOM.render(<App />,document.getElementById("root"));
+// Creating react component
+ReactDOM.render(<App library="React"/>,document.getElementById("root"));
