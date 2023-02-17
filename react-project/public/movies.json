@@ -1,4 +1,4 @@
 [
-    {"title":"My Neighbor Totoro"},
-    {"title":"Princess Mononoke"}
+    {"title":"My Neighbor Totoro", "releaseDate": "01/10/1989", "actors": [], "img": "https://static.tvtropes.org/pmwiki/pub/images/22467ba9_7a58_4a92_b23e_5d396b5b0626.jpeg", "rating":5},
+    {"title":"Princess Mononoke", "releaseDate": "03/09/1992", "actors": [], "img": "https://m.media-amazon.com/images/M/MV5BNTZkYmI0MmEtNGFlZC00OWZjLWFjMmItMjk1OWZkOWJiZGVjXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg", "rating":5}
 ]

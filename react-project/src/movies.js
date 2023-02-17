@@ -1,48 +1,40 @@
 import './App.css';
 import {useState, useEffect} from 'react';
 import {App2} from './submit';
+import {Link} from 'react-router-dom';
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
 
-function Header(){
-  return(<header>
-    <h1>
-      Movie Reviews
-    </h1>
-    <h2><a href='./public/index'>Reviews</a> <a href='./public/submit'>Submit</a></h2>
-  </header>
-  )
-}
+function MovieList(props){  
 
-function Main(props){
-  return(<section>
-    <p>
-
-    </p>
-  </section>
-  )
-}
-
-function Footer(){
+  const delEntry = (index) =>{
+    let newArray = props.allmovies.filter(function(val,i,arr){return i!=index});
+    props.setMovies(newArray)
+  }
   return(
-    <section>
-      <p>
-        
-      </p>
-    </section>
+    <div>
+      <header>
+        <h1>
+          Movie Reviews
+        </h1>
+        <div>
+          <nav>
+            <Link to="/">View Movies</Link>
+            <Link to="/submit">Submit</Link>
+          </nav>
+        </div>
+      </header>
+      <table>
+        <tbody>
+        <tr><th>Movies</th><th>Release Date</th><th>Actors</th><th>Poster</th><th>Rating</th><th></th></tr>
+        {props.allmovies.map((m,i)=><tr key={i}><td key="1">{m.title}</td><td key="2">{m.releaseDate}</td><td key="3">{m.actors}</td><td key="4"><img src={m.img} width="100px" alt={m.title}></img></td><td key="5">{m.rating}/5</td><td key="6"><button onClick={()=>{delEntry(i)}}>Del</button></td></tr>)}</tbody>
+      </table>
+    </div>
   )
 }
 
 
-function MovieList(props){
-  console.log(props.allmovies)
+function App() {
 
-  return(
-    // <tr>{props.movies.map((m)=>m.map((r,i)=><td key={i}>{r}</td>))}</tr>
-    <tbody><tr><td>Movies</td></tr>{props.allmovies.map((m,i)=><tr key={i}><td key={i}>{m.title}</td></tr>)}</tbody>
-    )
-}
-
-
-function App({library}) {
   let [movies, setMovies] = useState(null);
 
   useEffect(()=>{
@@ -53,18 +45,17 @@ function App({library}) {
     .catch(e=>console.log(e.message))
   },[])
 
+  console.log(movies);
+
   if(movies==null){
     return <h1>Loading...</h1>
   }
 
   return (
-    <div className="App">
-      <Header />
-      <table>
-        <MovieList allmovies={(movies)}></MovieList>
-      </table>
-      <App2 movies={movies} setMovies={setMovies}/>
-    </div>
+    <Routes>
+        <Route path="/" element={<MovieList allmovies={(movies)} setMovies={setMovies}/>}/>
+        <Route path="/submit" element={<App2 movies={movies} setMovies={setMovies}/>}/>
+    </Routes>
   );
 }
 
