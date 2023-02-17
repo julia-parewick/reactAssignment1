@@ -1,21 +1,26 @@
 import './App.css';
 import {useState, useEffect,useRef} from 'react';
+import {Link} from 'react-router-dom';
+
 
 function Header(){
-  return(
-  <header>
+  return(<header>
     <h1>
       Movie Reviews
     </h1>
-    <h2><a href='./public/index'>Reviews</a> <a href='./public/submit'>Submit</a></h2>
+    <div>
+      <nav>
+        <Link to="/">View Movies</Link>
+        <Link to="/submit">Submit</Link>
+      </nav>
+    </div>
   </header>
   )
 }
 
 export function App2(props) {
 
-    const movieTitle = useRef();
-
+  const movieTitle = useRef();
 
   const submit = (evt)=>{
     evt.preventDefault();
@@ -30,7 +35,6 @@ export function App2(props) {
     movieTitle.current.value="";
   }
   
-
   return (
     <div className="App">
       <Header />
@@ -41,4 +45,3 @@ export function App2(props) {
     </div>
   );
 }
-
