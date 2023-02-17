@@ -1,48 +1,33 @@
 import './App.css';
 import {useState, useEffect} from 'react';
 import {App2} from './submit';
-
-function Header(){
-  return(<header>
-    <h1>
-      Movie Reviews
-    </h1>
-    <h2><a href='./public/index'>Reviews</a> <a href='./public/submit'>Submit</a></h2>
-  </header>
-  )
-}
-
-function Main(props){
-  return(<section>
-    <p>
-
-    </p>
-  </section>
-  )
-}
-
-function Footer(){
-  return(
-    <section>
-      <p>
-        
-      </p>
-    </section>
-  )
-}
-
+import {Link} from 'react-router-dom';
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
 
 function MovieList(props){
   console.log(props.allmovies)
-
+  
   return(
-    // <tr>{props.movies.map((m)=>m.map((r,i)=><td key={i}>{r}</td>))}</tr>
-    <tbody><tr><td>Movies</td></tr>{props.allmovies.map((m,i)=><tr key={i}><td key={i}>{m.title}</td></tr>)}</tbody>
-    )
+    <body>
+      <header>
+        <h1>
+          Movie Reviews
+        </h1>
+        <div>
+          <nav>
+            <Link to="/">View Movies</Link>
+            <Link to="/submit">Submit</Link>
+          </nav>
+        </div>
+      </header>
+      <tbody><tr><td>Movies</td></tr>{props.allmovies.map((m,i)=><tr key={i}><td key={i}>{m.title}</td></tr>)}</tbody>
+    </body>
+  )
 }
 
 
-function App({library}) {
+function App() {
+
   let [movies, setMovies] = useState(null);
 
   useEffect(()=>{
@@ -53,18 +38,17 @@ function App({library}) {
     .catch(e=>console.log(e.message))
   },[])
 
+  console.log(movies);
+
   if(movies==null){
     return <h1>Loading...</h1>
   }
 
   return (
-    <div className="App">
-      <Header />
-      <table>
-        <MovieList allmovies={(movies)}></MovieList>
-      </table>
-      <App2 movies={movies} setMovies={setMovies}/>
-    </div>
+    <Routes>
+        <Route path="/" element={<MovieList allmovies={(movies)}/>}/>
+        <Route path="/submit" element={<App2 movies={movies} setMovies={setMovies}/>}/>
+    </Routes>
   );
 }
 
