@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // react component
 import App from "./movies";
-import App2 from "./submit";
+import {BrowserRouter} from 'react-router-dom';
 
 // ReactDOM.render(<App library="React"/>,document.getElementById("root"));
 // ReactDOM.render(<App2 library="React"/>,document.getElementById("root2"))

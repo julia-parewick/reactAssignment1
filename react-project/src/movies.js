@@ -26,7 +26,7 @@ function MovieList(props){
       <table>
         <tbody>
         <tr><th>Movies</th><th>Release Date</th><th>Actors</th><th>Poster</th><th>Rating</th><th></th></tr>
-        {props.allmovies.map((m,i)=><tr key={i}><td key="1">{m.title}</td><td key="2">{m.releaseDate}</td><td key="3">{m.actors}</td><td key="4"><img src={m.img} width="100px" alt={m.title}></img></td><td key="5">{m.rating}/5</td><td key="6"><button onClick={()=>{delEntry(i)}}>Del</button></td></tr>)}</tbody>
+        {props.allmovies.map((m,i)=><tr key={i}><td key="1">{m.title}</td><td key="2">{m.releaseDate}</td><td key="3">{m.actors.map(n=><p>{n}</p>)}</td><td key="4"><img src={m.img} width="100px" alt={m.title}></img></td><td key="5">{m.rating}/5</td><td key="6"><button onClick={()=>{delEntry(i)}}>Del</button></td></tr>)}</tbody>
       </table>
     </div>
   )
