@@ -13,8 +13,8 @@ function Header(){
         <Navbar bg="dark" variant="dark">
           <Navbar.Brand>Movie Reviews</Navbar.Brand>
           <Nav className="me-auto">
-            <Link to="/">View Movies</Link>
-            <Link to="/submit">Submit</Link>
+            <Col sm={10}><Link to="/">View Movies</Link></Col>
+            <Col><Link to="/submit">Submit</Link></Col>
           </Nav>
         </Navbar>
     </Container>
@@ -57,7 +57,7 @@ export function App2(props) {
   }
   
   return (
-    <div className="App">
+    <body>
       <Header />
       <Container fluid='sm' class=''>
         <form onSubmit={submit}>
@@ -80,6 +80,6 @@ export function App2(props) {
           <button>ADD</button>
         </form>
       </Container>
-    </div>
+    </body>
   );
 }
