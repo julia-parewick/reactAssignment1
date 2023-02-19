@@ -1,6 +1,9 @@
 import './App.css';
 import {useState, useEffect,useRef} from 'react';
 import {Link} from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 function Header(){
@@ -56,20 +59,27 @@ export function App2(props) {
   return (
     <div className="App">
       <Header />
-      <form onSubmit={submit}>
-        <p><label>Title:</label><input ref={movieTitle} type="text"/></p>
-        <p><label>Release Date:</label><input ref={releaseDate} type="date"/></p>
-        <p><label>Actors (Separate names with ',')</label><input ref={actors} type="text"/></p>
-        <p>
-          <label>Image:</label><select id="posterInput" onChange={enterURL}>
-            <option value="placeholder">Placeholder</option>
-            <option value="imageLink">Provide URL</option>
-          </select>
-          <span id="poster" className="hide"><input ref={poster} type="text"/></span>
-        </p>
-        <p><label>Rating /5:</label><input ref={rating} type="text"/></p>
-        <button>ADD</button>
-      </form>
+      <Container fluid='sm'>
+        <form onSubmit={submit}>
+          <Row><Col><label>Title: </label></Col><Col><input ref={movieTitle} type="text"/></Col></Row>
+          <Row><Col><label>Release Date: </label></Col><Col><input ref={releaseDate} type="date"/></Col></Row>
+          <Row><Col><label>Actors (Separate names with ','): </label></Col><Col><input ref={actors} type="text"/></Col></Row>
+          <Row>
+            <Col>
+              <label>Image:</label>
+            </Col>
+            <Col>
+              <select id="posterInput" onChange={enterURL}>
+                <option value="placeholder">Placeholder</option>
+                <option value="imageLink">Provide URL</option>
+              </select>
+              <span id="poster" className="hide"><input ref={poster} type="text"/></span>
+            </Col>
+          </Row>
+          <Row><Col><label>Rating /5: </label></Col><Col><input ref={rating} type="text"/></Col></Row>
+          <button>ADD</button>
+        </form>
+      </Container>
     </div>
   );
 }
