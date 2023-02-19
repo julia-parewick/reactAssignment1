@@ -1,23 +1,23 @@
 import './App.css';
-import {useState, useEffect,useRef} from 'react';
+import {useRef} from 'react';
 import {Link} from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-
 function Header(){
-  return(<header>
-    <h1>
-      Movie Reviews
-    </h1>
-    <div>
-      <nav>
-        <Link to="/">View Movies</Link>
-        <Link to="/submit">Submit</Link>
-      </nav>
-    </div>
-  </header>
+  return(
+    <Container fluid='true'>
+        <Navbar bg="dark" variant="dark">
+          <Navbar.Brand>Movie Reviews</Navbar.Brand>
+          <Nav className="me-auto">
+            <Link to="/">View Movies</Link>
+            <Link to="/submit">Submit</Link>
+          </Nav>
+        </Navbar>
+    </Container>
   )
 }
 
@@ -59,7 +59,7 @@ export function App2(props) {
   return (
     <div className="App">
       <Header />
-      <Container fluid='sm'>
+      <Container fluid='sm' class=''>
         <form onSubmit={submit}>
           <Row><Col><label>Title: </label></Col><Col><input ref={movieTitle} type="text"/></Col></Row>
           <Row><Col><label>Release Date: </label></Col><Col><input ref={releaseDate} type="date"/></Col></Row>
