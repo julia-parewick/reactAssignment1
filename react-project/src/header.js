@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import {Link} from 'react-router-dom';
 
-function Header(){
+export function Header(){
     return(
       <Container fluid='true'>
           <Navbar bg="dark" variant="dark">
