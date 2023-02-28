@@ -44,10 +44,10 @@ export function App2(props) {
     <div>
       <Header />
       <Container fluid='sm' class=''>
-        <form method="post" action="/updateMovies">
-          <Row><Col><label>Title: </label></Col><Col><input ref={movieTitle} type="text"/></Col></Row>
-          <Row><Col><label>Release Date: </label></Col><Col><input ref={releaseDate} type="date"/></Col></Row>
-          <Row><Col><label>Actors (Separate names with ','): </label></Col><Col><input ref={actors} type="text"/></Col></Row>
+        <form method="post">
+          <Row><Col><label>Title: </label></Col><Col><input name='title' ref={movieTitle} type="text"/></Col></Row>
+          <Row><Col><label>Release Date: </label></Col><Col><input name='releaseDate' ref={releaseDate} type="date"/></Col></Row>
+          <Row><Col><label>Actors (Separate names with ','): </label></Col><Col><input name='actors' ref={actors} type="text"/></Col></Row>
           <Row>
             <Col>
               <label>Image:</label>
@@ -57,10 +57,10 @@ export function App2(props) {
                 <option value="placeholder">Placeholder</option>
                 <option value="imageLink">Provide URL</option>
               </select>
-              <span id="poster" className="hide"><input ref={poster} type="text"/></span>
+              <span id="poster" className="hide"><input name='img' ref={poster} type="text"/></span>
             </Col>
           </Row>
-          <Row><Col><label>Rating /5: </label></Col><Col><input ref={rating} type="text"/></Col></Row>
+          <Row><Col><label>Rating /5: </label></Col><Col><input name='rating' ref={rating} type="text"/></Col></Row>
           <input type='submit' value='Submit'/>
         </form>
       </Container>

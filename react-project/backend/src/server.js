@@ -19,22 +19,24 @@ let moviesData =
             "rating":5}
         ];
 
-app.get('/', (req,res)=>{
+app.get('/',(req,res)=>{
     res.json(moviesData);
+})
 
+app.post('/', (req,res)=>{
+    moviesData = moviesData.filter(function(val,i,arr){return i!=req.body.index})
+    console.log(moviesData)
+    res.redirect('/');
 })
 
 app.get('/movies',(req,res)=>{
-    // res.send('Hello!');
     res.json(moviesData);
 })
 
 
-app.post('/updateMovies', (req,res)=>{
-    console.log(req.body.title);
+app.post('/submit', (req,res)=>{
     moviesData.push({"title": req.body.title,"releaseDate":req.body.releaseDate,"actors":req.body.actors.split(','),"img":req.body.img,"rating":req.body.rating});
-    // console.log(req.body);
-    res.send(req.body);
+    res.redirect('/');
 })
 
 app.listen(8000, ()=>{

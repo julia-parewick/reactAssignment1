@@ -8,18 +8,34 @@ import Table from 'react-bootstrap/Table';
 
 function MovieList(props){  
 
-  const delEntry = (index) =>{
-    let newArray = props.allmovies.filter(function(val,i,arr){return i!=index});
-    props.setMovies(newArray)
-  }
+  // const delEntry = (index) =>{
+  //   let newArray = props.allmovies.filter(function(val,i,arr){return i!=index});
+  //   props.setMovies(newArray)
+  // }
   return(
     <div>
       <Header />
       <Container fluid='sm'>
         <Table bordered>
           <tbody>
-          <tr><th>Movies</th><th>Release Date</th><th>Actors</th><th>Poster</th><th>Rating</th><th></th></tr>
-          {props.allmovies.map((m,i)=><tr key={i}><td key="1">{m.title}</td><td key="2">{m.releaseDate}</td><td key="3">{m.actors.map(n=><p>{n}</p>)}</td><td key="4"><img src={m.img} width="100px" alt={m.title}></img></td><td key="5">{m.rating}/5</td><td key="6"><button onClick={()=>{delEntry(i)}}>Del</button></td></tr>)}</tbody>
+            <tr><th>Movies</th><th>Release Date</th><th>Actors</th><th>Poster</th><th>Rating</th><th></th></tr>
+            {/* {props.allmovies.map((m,i)=><tr key={i}><td key="1">{m.title}</td><td key="2">{m.releaseDate}</td><td key="3">{m.actors.map(n=><p>{n}</p>)}</td><td key="4"><img src={m.img} width="100px" alt={m.title}></img></td><td key="5">{m.rating}/5</td><td key="6"><button method="post" onClick={()=>{delEntry(i)}}>Del</button></td></tr>)}</tbody> */}
+            {props.allmovies.map((m,i)=>
+            <tr key={i}>
+              <td key="1">{m.title}</td>
+              <td key="2">{m.releaseDate}</td>
+              <td key="3">{m.actors.map(n=><p>{n}</p>)}</td>
+              <td key="4"><img src={m.img} width="100px" alt={m.title}></img></td>
+              <td key="5">{m.rating}/5</td>
+              <td key="6">
+                <form method='post'>
+                  <input name='index' class='hide' type='text' value={i}/>
+                  <input type='submit' value='Del'/>
+                </form>
+              </td>
+            </tr>)}
+          </tbody>
+
         </Table>
       </Container>
     </div>
