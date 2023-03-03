@@ -10,8 +10,6 @@ app.use(express.json());
 
 const upload = multer({ dest: 'posters/' });
 
-// let moviesData = JSON.parse(fs.readFileSync('movies.json')); 
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -20,23 +18,11 @@ app.use(express.static(path.join(__dirname,'../build')));
 app.use(express.static(path.join(__dirname,'../posters')));
 
 
-// const saveData = () => {
-//     const jsonContent = JSON.stringify(moviesData);
-//     fs.writeFile('./movies.json',jsonContent,'utf8',function(err){
-//         if(err){
-//             console.log('An error occurred while writing')
-//         }
-//         else{
-//             console.log('File has been saved');
-//         }
-//     })
-// }
+app.get(/^(?!\/api).+/,(req,res)=>{
+    res.sendFile(path.join(__dirname,'../build/index.html'));
+})
 
-// app.get(/^(?!\/api).+/,(req,res)=>{
-//     res.sendFile(path.join());
-// })
-
-app.get('/movies', async (req, res) => {
+app.get('/api/movies', async (req, res) => {
     
     const client = new MongoClient('mongodb://127.0.0.1:27017/');
     await client.connect();
@@ -51,9 +37,7 @@ app.get('/',(req,res)=>{
     res.json(moviesData);
 })
 
-app.post('/', async (req,res)=>{
-    // moviesData = moviesData.filter(function(val,i,arr){return i!=req.body.index})
-    // saveData();
+app.post('/api/delete', async (req,res)=>{
     const data = req.body.data.split(',');
     const client = new MongoClient('mongodb://127.0.0.1:27017/');
     await client.connect();
@@ -62,9 +46,7 @@ app.post('/', async (req,res)=>{
     res.redirect('/');
 })
 
-app.post('/submit', upload.single('img'), async (req,res)=>{
-    // moviesData.push({"title": req.body.title,"releaseDate":req.body.releaseDate,"actors":req.body.actors.split(','),"img":req.body.img,"rating":req.body.rating});
-    // saveData();
+app.post('/api/submit', upload.single('img'), async (req,res)=>{
     console.log(req.files);
     const client = new MongoClient('mongodb://127.0.0.1:27017/');
     await client.connect();
@@ -76,7 +58,6 @@ app.post('/submit', upload.single('img'), async (req,res)=>{
         filename=req.files[0].filename;
     }
     const insertOperation = await db.collection('moviecollection').insertOne({"title": req.body.title,"releaseDate":req.body.releaseDate,"actors":req.body.actors.split(','),"img":filename,"rating":req.body.rating});
-    // console.log("posters/"+req.file.filename);
     res.redirect('/');
 
 })

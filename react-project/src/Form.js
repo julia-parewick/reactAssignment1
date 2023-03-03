@@ -21,8 +21,9 @@ export function Form(props) {
   return (
     <div>
       <Header />
-      <Container fluid='sm' class=''>
-        <form method="post" encType='multipart/form-data'>
+      <Container fluid='sm'>
+      <h1>Submit a Review</h1>
+        <form method="post" action="/api/submit" encType='multipart/form-data'>
           <Row><Col><label>Title: </label></Col><Col><input name='title' ref={movieTitle} type="text"/></Col></Row>
           <Row><Col><label>Release Date: </label></Col><Col><input name='releaseDate' ref={releaseDate} type="date"/></Col></Row>
           <Row><Col><label>Actors (Separate names with ','): </label></Col><Col><input name='actors' ref={actors} type="text"/></Col></Row>

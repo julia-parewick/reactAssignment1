@@ -8,10 +8,6 @@ import Table from 'react-bootstrap/Table';
 
 function MovieList(props){  
 
-  // const delEntry = (index) =>{
-  //   let newArray = props.allmovies.filter(function(val,i,arr){return i!=index});
-  //   props.setMovies(newArray)
-  // }
   return(
     <div>
       <Header />
@@ -19,7 +15,6 @@ function MovieList(props){
         <Table bordered>
           <tbody>
             <tr><th>Movies</th><th>Release Date</th><th>Actors</th><th>Poster</th><th>Rating</th><th></th></tr>
-            {/* {props.allmovies.map((m,i)=><tr key={i}><td key="1">{m.title}</td><td key="2">{m.releaseDate}</td><td key="3">{m.actors.map(n=><p>{n}</p>)}</td><td key="4"><img src={m.img} width="100px" alt={m.title}></img></td><td key="5">{m.rating}/5</td><td key="6"><button method="post" onClick={()=>{delEntry(i)}}>Del</button></td></tr>)}</tbody> */}
             {props.allmovies.map((m,i)=>
             <tr key={i}>
               <td key="1">{m.title}</td>
@@ -28,7 +23,7 @@ function MovieList(props){
               <td key="4"><img src={m.img} width="100px" alt={m.title}></img></td>
               <td key="5">{+m.rating}/5</td>
               <td key="6">
-                <form method='post'>
+                <form method='post' action="/api/delete">
                   <input name='data' class='hide' type='TEXT' value={[m.title,m.releaseDate,m.actors,m.img,m.rating]}/>
                   <input type='submit' value='Del'/>
                 </form>
@@ -49,7 +44,7 @@ function App() {
 
   useEffect(()=>{
     // load data from json
-    fetch('/movies')
+    fetch('/api/movies')
     .then(res=>res.json())
     .then(setMovies)
     .catch(e=>console.log(e.message))
